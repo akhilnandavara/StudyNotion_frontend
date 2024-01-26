@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { useSelector } from "react-redux";
 import { apiConnector } from "../../../services/apiconnector";
 import { useParams } from "react-router-dom";
-import { categories } from "../../../services/apis";
-import { getFullcatalogData } from "../../../services/operations/PageAndComponenApi";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { categories } from "../../../services/apis"
 import Footer from "../../common/Footer";
 
 
@@ -15,7 +12,6 @@ export default function CatalogMissinDataPage() {
   const { catalogName } = useParams();
   const [active, setActive] = useState(1);
   const [catalogPageData, setCatalogPageData] = useState(null);
-  const dispatch=useDispatch()
 
 
   useEffect(() => {
@@ -44,7 +40,6 @@ export default function CatalogMissinDataPage() {
 
   return (
     <div>
-    
     {/* Hero section */}
     <div className="box-content bg-richblack-800 px-4">
       <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
@@ -90,7 +85,7 @@ export default function CatalogMissinDataPage() {
       </div>
 
        
-      <div className="w-full h-full flex flex-col md:flex-row gap-4 mx-auto ">
+      <div className="w-11/12 h-full flex flex-col md:flex-row gap-4 mx-auto ">
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
