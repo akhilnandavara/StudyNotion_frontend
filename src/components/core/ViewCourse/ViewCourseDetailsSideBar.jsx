@@ -69,17 +69,14 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
               {/* Add Review Button  */}
               <div>
                 {/* { console.log("Reviewid",courseEntireData?.ratingAndReviews?.[0].course===courseId)} */}
-                <IconBtn
-                  text={`${
-                    courseEntireData?.ratingAndReviews?.find(
-                      (review) =>
-                        review?.course === courseId && review?.user === userId
-                    )
-                      ? "Edit Review"
-                      : "Add Review"
-                  }`}
-                  onclick={() => setReviewModal(true)}
-                />
+               { (!courseEntireData?.ratingAndReviews?.find(
+                      (review) =>review?.course === courseId && review?.user === userId
+                    ))&&
+                    <IconBtn
+                      text={`Add Review`}
+                      onclick={() => setReviewModal(true)}
+                    />
+              }
               </div>
             </div>
             {/* Heading */}

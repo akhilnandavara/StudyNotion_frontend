@@ -59,7 +59,8 @@ export default function CatalogMissinDataPage() {
     </div>
 
     {/* Section 1 */}
-    <div className="mx-auto box-content w-11/12 px-4 py-12">
+     {/* flex min-h-[260px] flex-col justify-center */}
+    <div className="mx-auto max-w-maxContentTab  box-content w-11/12 px-4 py-12 lg:max-w-maxContent ">
       <p className="section_heading">Courses to get your started</p>
       <div className="my-4 flex border-b border-b-richblack-600 text-sm">
         <p
@@ -85,7 +86,7 @@ export default function CatalogMissinDataPage() {
       </div>
 
        
-      <div className="w-11/12 h-full flex flex-col md:flex-row gap-4 mx-auto ">
+      <div className=" h-full flex flex-col md:flex-row gap-4 mx-auto ">
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
           <div className="bg-richblack-800 rounded-md p-6 md:w-[25%] min-h-[6rem]"></div>
