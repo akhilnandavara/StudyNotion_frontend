@@ -7,10 +7,10 @@ const Cart = () => {
   const { total, totalItems } = useSelector((state) => state.cart);
 
   return (
-    <>
-      <h1 className="mb-14 mt-6 text-3xl font-medium text-richblack-5">Cart</h1>
+    <div className="my-10">
+      <h1 className="mb-10 mt-6 text-3xl font-medium text-richblack-5">Cart</h1>
       <p className="border-b border-b-richblack-400 pb-2 font-semibold text-richblack-400">
-        {totalItems.length >0 ?totalItems: "No"} Courses in Cart
+        {totalItems? totalItems : "No"} Courses in Cart
       </p>
       {total > 0 ? (
         <div className="mt-8 flex flex-col-reverse items-start gap-x-10 gap-y-6 lg:flex-row">
@@ -22,7 +22,7 @@ const Cart = () => {
           Your cart is Empty
         </p>
       )}
-    </>
+    </div>
   );
 };
 

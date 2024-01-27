@@ -18,6 +18,7 @@ import {
 } from "../../../../../services/operations/courseDetailsApi";
 
 const CourseBuilderForm = () => {
+
   const {
     register,
     handleSubmit,
@@ -30,6 +31,12 @@ const CourseBuilderForm = () => {
   
 
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const element = document.getElementById('courseBuilder');
+    element.scrollIntoView();
+ }, []);
 
   // clear a section
   const onCancelEdit = () => {
@@ -106,7 +113,7 @@ const CourseBuilderForm = () => {
   return (
     <div className="space-y-8 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
      
-      <p  className="text-2xl font-semibold text-richblack-5">Course Builder</p>
+      <p  className="text-2xl font-semibold text-richblack-5" id="courseBuilder">Course Builder</p>
       <form onSubmit={handleSubmit(onSubmitHandler)} className="space-y-4">
         <div className="flex flex-col space-y-2">
           <label htmlFor="sectionName" className="text-sm text-richblack-5">

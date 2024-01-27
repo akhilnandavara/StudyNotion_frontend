@@ -50,7 +50,7 @@ export default function Catalog() {
     }
   }, [categoryId]);
   
-  if(!loading || !catalogPageData){
+  if(loading || !catalogPageData){
     return (
       <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
         <div className="spinner"></div>
@@ -62,7 +62,7 @@ export default function Catalog() {
         
 
   return (
-    <div className="text-richblack-5">
+    <div className="text-richblack-5 ">
       {/* Hero section */}
       <div className=" box-content bg-richblack-800 px-4">
         <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">
@@ -78,7 +78,7 @@ export default function Catalog() {
           <p className="max-w-[870px] text-richblack-200">
             {catalogPageData?.data?.selectedCategory?.description}
           </p>
-        </div>
+        </div> 
       </div>
 
       {/* Section 1 */}

@@ -79,9 +79,8 @@ const handleDeleteCourse=async(courseId)=>{
                     )}
                   </div>
                 </Td>
-
                 {/* Second Column */}
-                <Td className="text-sm font-medium text-richblack-100">{course.totalDuration}</Td>
+                <Td className="text-sm font-medium text-richblack-100">2:30m</Td>
                 {/* third Column */}
                 <Td className="text-sm font-medium text-richblack-100">{course.price}</Td>
                 {/* forth Column */}

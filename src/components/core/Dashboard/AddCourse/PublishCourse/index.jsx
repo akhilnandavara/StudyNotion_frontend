@@ -9,6 +9,9 @@ import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 
 const PublishCourse = () => {
+
+
+
   const {
     register,
     handleSubmit,

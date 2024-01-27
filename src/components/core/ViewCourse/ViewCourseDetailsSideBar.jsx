@@ -67,7 +67,7 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
                 </button>
               </div>
               {/* Add Review Button  */}
-              <div>
+              <div className="text-xs md:text-lg">
                 {/* { console.log("Reviewid",courseEntireData?.ratingAndReviews?.[0].course===courseId)} */}
                { (!courseEntireData?.ratingAndReviews?.find(
                       (review) =>review?.course === courseId && review?.user === userId
@@ -80,8 +80,8 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
               </div>
             </div>
             {/* Heading */}
-            <div className="flex flex-col">
-              <p>{courseEntireData?.courseName}</p>
+            <div className="flex flex-col gap-2">
+              <p className="text-sm md:text-lg">{courseEntireData?.courseName}</p>
               <p className="text-sm font-semibold text-richblack-500">
                 {completedLectures.length}/{totalNoOfLectures}
               </p>
@@ -97,7 +97,7 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
                 onClick={() => setActiveStatus(section?._id)}
               >
                 {/* Section */}
-                <div className="flex flex-row justify-between bg-richblack-600 px-5 py-4">
+                <div className="flex flex-row justify-between bg-richblack-600 p-1 md:px-5 py-4">
                   <div className="w-[70%] font-semibold">
                     {section?.sectionName}
                   </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import IconButton from "../../common/IconButton";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,10 +8,15 @@ const MyProfile = () => {
   const { user } = useSelector((state) => state.profile);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const element = document.getElementById('myProfile');
+    element.scrollIntoView();
+ }, []);
+
   return (
     <div>
       <div className="py-6 pr-20 pl-6">
-        <h1 className="text-richblack-5 font-medium text-3xl ">My Profile</h1>
+        <h1 className="text-richblack-5 font-medium text-3xl" id="myProfile">My Profile</h1>
       </div>
       <div className="flex flex-col gap-4  mb-[5rem]  px-4 lg:items-center justify-center  w-[100%] ">
         {/* section1 */}
@@ -65,8 +70,8 @@ const MyProfile = () => {
              
             ><FiEdit/></IconButton>
           </div>
-          {/* Delete Account */}
-          <div className="grid grid-rows-2 grid-cols-2 gap-2 text-richblack-5">
+          {/*  Account */}
+          <div className="grid grid-cols-1  md:grid-rows-3 md:grid-cols-2 gap-2 text-richblack-5">
             <div className="flex flex-col">
                 <p className="text-richblack-600 font-light text-sm">First Name</p>
                 <p className="font-medium text-sm">{user.firstName}</p>

@@ -66,21 +66,21 @@ function Template({ title, description1, description2, image, formType }) {
           </div>
 
              {/* Demo Credential */}
-          <div className={`${showDemoCredential ? "absolute" : "hidden"} z-[2000]  top-[30%] left-[30%]  2xl:top-[50%] 2xl:left-[50%] -rotate-12 p-2 w-[20rem] bg-richblack-400 rounded-sm`}
+          <div className={`${showDemoCredential ? "absolute" : "hidden"} z-[2000]  top-20 left-10  md:top-[30%] md:left-[30%]  2xl:top-[50%] 2xl:left-[50%] md:-rotate-12 p-2 w-[13rem]  md:w-[20rem] bg-richblack-400 rounded-sm`}
           >
              <button onClick={() => setShowDemoCredential(false)} className="absolute right-0 top-0">
-                <BiRadioCircleMarked size={30} className=" text-richblack-5 " />
+                <BiRadioCircleMarked size={30} className=" text-richblack-5  " />
               </button>
               
             <div className="flex flex-col gap-4 p-4">
-              <div className="text-richblack-5 text-2xl flex gap-4 font-extrabold">
-              <h2 >Take a Demo</h2>
-              <span><BsLightningChargeFill /></span> 
+              <div className="text-richblack-5  flex  items-center gap-1 md:gap-4 font-extrabold">
+              <h2 className="text-2xl">Take a Demo</h2>
+              <span><BsLightningChargeFill/></span> 
               </div>
 
              
             {/* Buttons */}
-            <div className="flex flex-col gap-4 w-fit">
+            <div className="flex flex-col gap-4 w-fit ">
               <button
                 className="bg-yellow-50 text-richblack-900 p-2  font-bold rounded-md flex items-center"
                 onClick={() =>

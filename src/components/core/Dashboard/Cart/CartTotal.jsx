@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import IconBtn from '../../../common/IconButton'
 import {buyCourse} from '../../../../services/operations/studentFeatureApi'
 import { useNavigate } from 'react-router-dom'
+import { MdCurrencyRupee } from 'react-icons/md'
 
 const CartTotal = () => {
   const {total,cart}=useSelector((state)=>state.cart)
@@ -18,9 +19,9 @@ const CartTotal = () => {
   }
 
   return (
-    <di className="min-w-[280px]  rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
+    <di className="md:min-w-[280px] rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6">
       <div className="mb-1 text-sm font-medium text-richblack-300">Total:</div>
-      <div className="mb-6 text-3xl font-medium text-yellow-100">Rs. {total}</div>
+      <div className="mb-6 text-3xl font-medium text-yellow-100 flex items-center"><MdCurrencyRupee />{total}</div>
 
       <IconBtn
       text={"Buy Now"}

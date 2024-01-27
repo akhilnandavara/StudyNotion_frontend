@@ -51,7 +51,7 @@ export default function ReviewSlider() {
             },
           }}
         >
-          {reviews.map((review, index) => (
+          {reviews?.map((review, index) => (
             <SwiperSlide key={index}>
               <div className="flex flex-col gap-2 bg-richblack-800 py-4 px-6 min-h-[10rem] justify-center min-w-[14rem] text-[14px]  text-richblack-25">
                 <div className="flex flex-row items-center gap-4">

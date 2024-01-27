@@ -24,7 +24,7 @@ export function updateDisplayPicture(token,formData) {
         },
       );
 
-      console.log("Profile update RESPONSE...", response);
+      // console.log("Profile update RESPONSE...", response);
       
 
       if (!response.data.success) {
@@ -58,7 +58,7 @@ export function updateProfile(token,data) {
         },
       );
 
-      console.log("Profile update RESPONSE...", response);
+      // console.log("Profile update RESPONSE...", response);
       
 
       if (!response.data.success) {
@@ -85,7 +85,6 @@ export function changePassword(token,data) {
   
   return async () => {
     try {
-      console.log(data)
       const response = await apiConnector(
         "POST",
         CHANGE_PASSWORD_API,

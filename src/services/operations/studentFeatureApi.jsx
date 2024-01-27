@@ -59,7 +59,7 @@ export async function buyCourse(
       toast.error(orderResponse.data.message)
       throw new Error(orderResponse.data.message);
     }
-    console.log("Order Response...",orderResponse)
+    // console.log("Order Response...",orderResponse)
     //options
     const options = {
       key:process.env.REACT_APP_RAZORPAY_KEY,

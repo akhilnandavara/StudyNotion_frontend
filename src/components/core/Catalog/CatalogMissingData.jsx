@@ -39,7 +39,7 @@ export default function CatalogMissinDataPage() {
         
 
   return (
-    <div>
+    <div className="flex flex-col justify-end">
     {/* Hero section */}
     <div className="box-content bg-richblack-800 px-4">
       <div className="mx-auto flex min-h-[260px] max-w-maxContentTab flex-col justify-center gap-4 lg:max-w-maxContent ">

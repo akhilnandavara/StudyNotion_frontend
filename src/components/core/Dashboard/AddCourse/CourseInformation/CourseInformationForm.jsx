@@ -15,8 +15,12 @@ import { COURSE_STATUS } from "../../../../../utils/constants";
 import ChipInput from "./ChipInput";
 import Upload from "../Upload";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { useLocation } from "react-router-dom";
 
 const CourseInformationForm = () => {
+  
+
+  
   const {
     handleSubmit,
     register,
@@ -29,6 +33,7 @@ const CourseInformationForm = () => {
   const { token } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(false);
   const [courseCategories, setCourseCategories] = useState([]);
+  const location=useLocation()
   
 
   const getCourseCategory = async () => {
@@ -42,6 +47,7 @@ const CourseInformationForm = () => {
     dispatch(hideLoading())
 
   };
+
 
   useEffect(() => {
     getCourseCategory();
@@ -112,9 +118,9 @@ const CourseInformationForm = () => {
         if (currentValues.courseImage !== course.thumbnail) {
           formData.append("thumbnail", data.courseImage);
         }
-        // setLoading(true);
+        setLoading(true);
         const result = await editCourseDetails(formData, token);
-        // setLoading(false);
+        setLoading(false);
         if (result) {
           dispatch(setStep(2));
           dispatch(setCourse(result));

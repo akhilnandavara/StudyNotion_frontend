@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import IconBtn from "../../../common/IconButton";
 import {  RiDeleteBin6Line } from "react-icons/ri";
+import {   MdCurrencyRupee } from "react-icons/md";
 import {removeFromCart} from '../../../../slices/cartSlice'
 import RatingStars from "../../../common/ReviewStars";
 import GetAvgRating from "../../../../utils/AvgRating";
@@ -42,12 +42,13 @@ const CourseCart = () => {
             </div>
             </div>
 
-            <div className="flex flex-col items-end space-y-2 ">
+            <div className="flex flex-col text-sm md:text-lg items-end space-y-2 ">
             <button onClick={() => dispatch(removeFromCart(course._id))} className="flex items-center gap-x-1 rounded-md border border-richblack-600 bg-richblack-700 py-3 px-[12px] text-pink-200"  >
               <RiDeleteBin6Line />
               <span>Remove</span>
             </button>
-              <p className="mb-6 text-3xl font-medium text-yellow-100">
+              <p className="mb-6 md:text-3xl text-xl font-medium flex items-center  text-yellow-100">
+              <MdCurrencyRupee />  
                 {course?.price}
               </p>
             </div>

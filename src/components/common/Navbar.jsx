@@ -159,9 +159,23 @@ function Navbar() {
           {/* added profile dropdown if token is not equal to null means user is present*/}
         </div>
 
+
         {/* Menu bar in small Device */}
-        
-        <div className="text-richblack-5 flex items-center gap-x-1 md:hidden">
+        <div className="text-richblack-5 flex items-center gap-x-4 md:hidden">
+      {/* cart in small device */}
+        {user &&
+            user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && user?.accountType !== ACCOUNT_TYPE.ADMIN && ( // if user is present(login) and user is not instructor then we show cart icon in place of login and signup;
+              <Link to="/dashboard/cart" className="relative">
+                <AiOutlineShoppingCart className="text-xl text-richblack-100" />{" "}
+                {/* icon of cart */}
+                {totalItems > 0 && (
+                  <span className="absolute -bottom-2 -right-2 grid h-4 w-4 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                    {totalItems}{" "}
+                    {/* no of item(courses) present in cart , we take it absolute because we want to overlap it over cart icon */}
+                  </span>
+                )}
+              </Link>
+            )}
           {
             <button className="relative" onClick={() => setOpen(true)}>
                 <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
@@ -169,6 +183,7 @@ function Navbar() {
             </button>
           }
         </div>
+        
       </div>
     </div>
   );

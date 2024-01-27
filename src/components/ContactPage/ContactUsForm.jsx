@@ -35,7 +35,7 @@ const ContactUsForm = () => {
         contactusEndpoint.CONTACT_US_API,
         {data}
       );
-      console.log("Contact form Response", response);
+      // console.log("Contact form Response", response);
       toast.success(response?.data.message)
       setLoading(false);
     } catch (error) {

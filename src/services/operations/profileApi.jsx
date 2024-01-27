@@ -44,7 +44,7 @@ export const fetchInstructorDashboard = async (token) => {
     if (!response.data.success) {
       throw new Error(response.data.message);
     }
-    console.log("Instructor Dashboard response ", response?.data?.courses);
+    // console.log("Instructor Dashboard response ", response?.data?.courses);
     result = response.data.courses;
   } catch (error) {
     console.log("Instructor Dashboard error ", error);

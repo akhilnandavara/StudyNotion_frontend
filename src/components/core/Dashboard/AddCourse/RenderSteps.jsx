@@ -3,6 +3,8 @@ import { useSelector } from "react-redux"
 import CourseInformationForm from "./CourseInformation/CourseInformationForm"
 import CourseBuilderForm from "./CourseBuilder/CourseBuilder"
 import PublishCourse from "./PublishCourse"
+import { useEffect } from "react"
+
 
 
 export default function RenderSteps() {
@@ -23,13 +25,19 @@ export default function RenderSteps() {
     },
   ]
 
+  useEffect(() => {
+    const element = document.getElementById('stepsName');
+    element.scrollIntoView();
+ }, []);
+
+ 
 
   return (
     <>
       <div className="relative mb-2 flex w-full justify-center">
-        {steps.map((item) => (
+        {steps.map((item,index) => (
           <>
-            <div className="flex flex-col items-center "  key={item.id}>
+            <div className="flex flex-col items-center "  key={index}>
               <button className={`grid cursor-default aspect-square w-[34px] place-items-center rounded-full border-[1px] ${
                     step === item.id
                       ? "border-yellow-50 bg-yellow-900 text-yellow-50"
@@ -49,10 +57,10 @@ export default function RenderSteps() {
         ))}
       </div>
 
-      <div className="relative mb-16  flex w-[100%] select-none justify-around">
-        {steps.map((item) => (
+      <div className="relative mb-16  flex w-[100%] select-none justify-around" id="stepsName">
+        {steps.map((item,index) => (
           <>
-            <div className="flex min-w-[130px] flex-col items-center  gap-y-2" key={item.id}>
+            <div className="flex min-w-[130px] flex-col items-center  gap-y-2" key={index}>
               <p className={`text-sm ${step >= item.id ? "text-richblack-5" : "text-richblack-500"}`}>
                 {item.title}
               </p>

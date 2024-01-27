@@ -80,7 +80,7 @@ const Footer = () => {
         <div className="flex flex-col mb-10  px-6  w-full lg:flex-row  ">
 
           {/* Section 1  */}
-          <div className=" flex  flex-wrap text-xl  mb-10 lg:flex-row    justify-around gap-20 lg:w-[50%] ">
+          <div className=" flex  flex-wrap text-xl  mb-10 lg:flex-row    justify-start gap-20 lg:w-[50%] ">
             <div className="flex flex-col gap-2">
               <img src={logo} alt="" loading = "lazy" />
               <div className="footer-headings">Company</div>
