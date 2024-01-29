@@ -1,4 +1,4 @@
-import { Pagination, Autoplay } from "swiper/modules";
+import {  Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles

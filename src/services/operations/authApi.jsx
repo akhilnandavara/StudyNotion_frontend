@@ -28,7 +28,7 @@ export function sendOtp(email, navigate) {
     try {
     dispatch(showLoading())
       const response = await apiConnector("POST", SENDOTP_API, {email, checkUserPresent: true,})
-      console.log("SENDOTP API RESPONSE............", response)
+      // console.log("SENDOTP API RESPONSE............", response)
     
       if(!response.data.success) {
         toast.error(response.data.message)
@@ -55,7 +55,7 @@ export function signUp(accountType, firstName, lastName, email, password, confir
     try {
       dispatch(showLoading())
       const response = await apiConnector("POST", SIGNUP_API, {accountType, firstName,  lastName,  email,  password,  confirmPassword,  otp, })
-      console.log("SIGNUP API RESPONSE............", response)
+      // console.log("SIGNUP API RESPONSE............", response)
 
       if(!response.data.success) {
         throw new Error(response.data.message)
@@ -124,7 +124,7 @@ export function  getPasswordResetToken(email,setEmailSent){
     dispatch(showLoading())
         try {
             const response=await apiConnector("POST",RESETPASSTOKEN_API,{email})
-            console.log(" RESET PASSWORD TOKEN RESPONSE...",response);
+            // console.log(" RESET PASSWORD TOKEN RESPONSE...",response);
             if(!response.data.success){
                 throw new Error(response.data.message)
             }
@@ -146,7 +146,7 @@ export function resetPassword(password, confirmPassword, token) {
     dispatch(showLoading())
     try{
       const response = await apiConnector("POST", RESETPASSWORD_API, {password, confirmPassword, token});
-      console.log("RESET Password RESPONSE...", response);
+      // console.log("RESET Password RESPONSE...", response);
 
       if(!response.data.success) {
         throw new Error(response.data.message);

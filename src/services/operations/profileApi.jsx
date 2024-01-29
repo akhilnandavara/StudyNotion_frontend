@@ -48,7 +48,8 @@ export const fetchInstructorDashboard = async (token) => {
     result = response.data.courses;
   } catch (error) {
     console.log("Instructor Dashboard error ", error);
-    toast.error(error.response);
+    toast.error(error.response.data.message)
+
   }
   return result;
 };
@@ -68,7 +69,8 @@ export const fetchAdminDashboard = async (token) => {
     result = response.data.data;
   } catch (error) {
     console.log("Admin Dashboard error ", error);
-    toast.error(error.response);
+    toast.error(error.response.data.message)
+
   }
   return result;
 };

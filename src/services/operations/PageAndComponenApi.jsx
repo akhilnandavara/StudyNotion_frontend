@@ -1,4 +1,3 @@
-import React from 'react'
 import { apiConnector } from '../apiconnector';
 import { catalogData } from '../apis';
 

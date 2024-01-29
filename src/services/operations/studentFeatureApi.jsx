@@ -176,7 +176,7 @@ export const getPaymentHistory = async (token) => {
   let result = []
   try {
     const response = await apiConnector( "GET",GET_PAYMENT_HISTORY, null, {Authorization: `bearer ${token}`,} )
-    // console.log("PAYMENT HISTORY API RESPONSE............", response)
+    console.log("PAYMENT HISTORY API RESPONSE............", response)
 
     if(!response?.data?.success) {
       throw new Error("Could Not Fetch Payment History")
@@ -185,7 +185,7 @@ export const getPaymentHistory = async (token) => {
   }
    catch (error) {
     console.log("PAYMENT API ERROR............", error)
-    toast.error(error.message)
+    toast.error(error.response.data.message)
   }
   return result
 }

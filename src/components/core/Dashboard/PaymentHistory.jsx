@@ -20,10 +20,9 @@ export default function PaymentHistory() {
     <h1 className="mb-14 text-3xl font-medium text-richblack-5">Payment History</h1>
     <p className="border-b border-b-richblack-400 pb-2 font-semibold text-richblack-400">
 Course purcharse History
-
     </p>
-    { paymentsDetails.length> 0 ? (
-      
+    {console.log("paymentsDetails",paymentsDetails)}
+    { paymentsDetails?.length>0 ? (
       <div className="my-8  text-richblack-5 grid grid-cols-1">
          <div className="flex flex-wrap rounded-t-lg items-center bg-richblack-500 ">
               <p className="w-[50%] md:w-[40%] px-5 py-3">Order Id </p>
@@ -44,7 +43,7 @@ Course purcharse History
       </div>
     ) : (
       <p className="my-14 text-center text-3xl text-richblack-100">
-        Your History found
+        Your History  Not Found
       </p>
     )}
     </div>
