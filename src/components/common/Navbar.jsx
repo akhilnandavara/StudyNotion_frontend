@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AiOutlineMenu, AiOutlineShoppingCart } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
@@ -10,6 +10,7 @@ import { categories } from "../../services/apis";
 import { ACCOUNT_TYPE } from "../../utils/constants";
 import ProfileDropdown from "../core/Auth/profileDropDown";
 import LineMenu from "../core/Auth/lineMenu";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
 
 
 
@@ -19,6 +20,7 @@ function Navbar() {
   const { totalItems } = useSelector((state) => state.cart);
 
   const location = useLocation(); // location is used for location.pathname;
+  const dispatch = useDispatch(); 
 
   const [subLinks, setSubLinks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -28,6 +30,7 @@ function Navbar() {
   useEffect(() => {
     (async () => {
       setLoading(true);
+      dispatch(showLoading())
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API);
         setSubLinks(res?.data?.data);
@@ -35,6 +38,8 @@ function Navbar() {
         console.log("Could not fetch Categories.", error);
       }
       setLoading(false);
+      dispatch(hideLoading())
+
     })();
   }, []);
 

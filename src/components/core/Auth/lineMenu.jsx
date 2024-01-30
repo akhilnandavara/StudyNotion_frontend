@@ -91,7 +91,7 @@ export default function LineMenu({ token, setOpen }) {
             ))}
           </>
         ) : (
-          <p className="text-center text-richblack-100">No Courses Found</p>
+          <p className="text-center text-richblack-100">Courses Loading...</p>
         )}
       </div>
 

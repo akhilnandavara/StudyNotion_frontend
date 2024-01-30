@@ -45,7 +45,7 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
 
   return (
     <>
-      {!videoBarActive && (
+      {videoBarActive && (
         <div
           ref={ref}
           className={`${
