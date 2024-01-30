@@ -5,7 +5,7 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function InstructorChart({instructorData}) {
-  const [currChart, setCurrChart] = useState("student");
+  const [currChart, setCurrChart] = useState("students");
   const turnCateWords=5
 
   const getRandomColors = (numColors) => {

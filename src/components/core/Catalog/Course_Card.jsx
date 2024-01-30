@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RatingStars from "../../common/ReviewStars";
 import GetAvgRating from "../../../utils/AvgRating";
+import {FaRupeeSign} from 'react-icons/fa'
 
 export default function CourseDataCard({ course, Height }) {
 
@@ -32,7 +33,9 @@ export default function CourseDataCard({ course, Height }) {
               <RatingStars Review_Count={avgRating}/>
               <span className="text-richblack-400 hidden lg:visible">{course?.ratingAndReviews.length} Ratings</span>
             </div>
-            <p className="text-xl text-richblack-5">Rs. {course?.price}</p>
+            <p className="text-xl text-richblack-5 flex items-center">
+              <FaRupeeSign/>
+               {course?.price}</p>
           </div>
         </div>
       </Link>

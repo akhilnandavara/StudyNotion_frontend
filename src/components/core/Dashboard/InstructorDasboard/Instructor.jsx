@@ -5,7 +5,7 @@ import { fetchInstructorCourses } from "../../../../services/operations/courseDe
 import { Link } from "react-router-dom";
 import InstructorChart from "./InstructorChart";
 import { hideLoading, showLoading } from "react-redux-loading-bar";
-
+import {FaRupeeSign} from 'react-icons/fa'
 export default function Instructor() {
   const [loading, setLoading] = useState(false);
   const [courses, setCourses] = useState([]);
@@ -92,8 +92,9 @@ export default function Instructor() {
 
                 <div>
                   <p className="text-lg text-richblack-200">Total Income</p>
-                  <p className="text-3xl font-semibold text-richblack-50">
-                    Rs. {totalAmountGenerated}
+                  <p className="text-3xl font-semibold text-richblack-50 flex items-center">
+                    <FaRupeeSign/>
+                     {totalAmountGenerated}
                   </p>
                 </div>
               </div>

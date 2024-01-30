@@ -8,9 +8,11 @@ import { categories } from "../services/apis";
 import { getFullcatalogData } from "../services/operations/PageAndComponenApi";
 import CourseDataCard from "../components/core/Catalog/Course_Card";
 import { useDispatch, useSelector } from "react-redux";
-import Error from './Error'
+
 import { hideLoading, showLoading } from "react-redux-loading-bar";
 import CatalogMissinDataPage from "../components/core/Catalog/CatalogMissingData";
+import Error from "./Error";
+import { setLoading } from "../slices/profileSlice";
 
 
 
@@ -26,10 +28,11 @@ export default function Catalog() {
   useEffect(() => {
     const getCategories = async () => {
       const res = await apiConnector("GET", categories.CATEGORIES_API);
-      const category_id = res?.data?.data?.filter(
-        (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName
-      )[0]._id;
-      setCategoryId(category_id);
+     
+        const category_id = res?.data?.data?.filter(
+          (ct) => ct.name.split(" ").join("-").toLowerCase() === catalogName)?.[0]?._id;
+          setCategoryId(category_id);
+     
     };
     getCategories();
   }, [catalogName]);
@@ -37,12 +40,14 @@ export default function Catalog() {
   useEffect(() => {
     const getCategoryData = async () => {
       try {
+        dispatch(setLoading(true))
         dispatch(showLoading())
         const res = await getFullcatalogData(categoryId);
         setcatalogPageData(res);
       } catch (error) {
         console.error("Error while getCategoryData", error);
       }
+      dispatch(setLoading(false))
       dispatch(hideLoading())
     };
     if (categoryId) {
@@ -50,7 +55,7 @@ export default function Catalog() {
     }
   }, [categoryId]);
   
-  if(loading || !catalogPageData){
+  if(loading&&categoryId!==undefined&&!catalogPageData){
     return (
       <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
         <div className="spinner"></div>
@@ -58,7 +63,8 @@ export default function Catalog() {
     )
   }
   
-  if(!loading && !catalogPageData.success) return <CatalogMissinDataPage />
+  if(!loading&&categoryId!==undefined&&!catalogPageData?.success) return <CatalogMissinDataPage />
+  if(!loading && categoryId===undefined) return <Error />
         
 
   return (

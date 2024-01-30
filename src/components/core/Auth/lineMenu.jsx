@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { AiOutlineCaretDown, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineCaretDown } from "react-icons/ai";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
-import { FcAbout } from "react-icons/fc";
-import { IoIosContact } from "react-icons/io";
+import { IoIosContact, IoIosCreate, IoIosInformationCircleOutline, IoIosLogIn } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout } from "../../../services/operations/authApi";
@@ -100,7 +99,7 @@ export default function LineMenu({ token, setOpen }) {
       <div className="flex flex-col w-full  items-center">
         <Link to="/about" onClick={() => setOpen(false)}>
           <div className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
-            <FcAbout className="text-lg" />
+            <IoIosInformationCircleOutline className="text-lg" />
             About
           </div>
         </Link>
@@ -131,13 +130,15 @@ export default function LineMenu({ token, setOpen }) {
         {/* Login Button */}
         {token === null && (
           <>
-            <Link to="/login">
+            <Link to="/login" onClick={() => setOpen(false)}>
               <button className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+            <IoIosLogIn className="text-lg" />
                 Log in
               </button>
             </Link>
-            <Link to="/signup">
+            <Link to="/signup" onClick={() => setOpen(false)}>
               <button className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25">
+            <IoIosCreate className="text-lg" />
                 Sign Up
               </button>
             </Link>
