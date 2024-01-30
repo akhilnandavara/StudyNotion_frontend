@@ -45,11 +45,7 @@ export default function ViewCourseDetailsSideBar({ setReviewModal }) {
 
   return (
     <>
-      {!videoBarActive ? (
-        <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">
-          <div className="spinner"></div>
-        </div>
-      ) : (
+      {!videoBarActive && (
         <div
           ref={ref}
           className={`${
