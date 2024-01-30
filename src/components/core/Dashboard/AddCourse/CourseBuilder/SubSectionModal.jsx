@@ -63,7 +63,7 @@ const SubSectionModal = ({
     if(currentValue.lectureVideo!==modalData.videoUrl){
         formData.append("video",currentValue.lectureVideo)
     }
-    // setLoading(true)
+    setLoading(true)
     dispatch(showLoading())
 
     const result=await updateSubSection(formData,token)
@@ -76,7 +76,7 @@ const SubSectionModal = ({
     }
     setModalData(null)
     dispatch(hideLoading())
-    // setLoading(false)
+    setLoading(false)
   }
 
   const handleOnSubmit=async(data)=>{
@@ -124,7 +124,7 @@ const SubSectionModal = ({
       <div className="my-10 w-11/12 max-w-[700px] rounded-lg border border-richblack-400 bg-richblack-800">
        {/* Modal Header */}
         <div className="flex items-center justify-between rounded-t-lg bg-richblack-700 p-5">
-          <p className="text-xl font-semibold text-richblack-5">{view &&"viewing"} {edit &&"Editing "} {add &&"Adding"} Lecture</p>
+          <p className="text-xl font-semibold text-richblack-5">{view &&"Viewing"} {edit &&"Editing "} {add &&"Adding"} Lecture</p>
           <button
           onClick={()=>(!loading ?setModalData(null) :{})}
           >

@@ -89,7 +89,7 @@ export default function Catalog() {
 
       {/* Section 1 */}
       <div className=" mx-auto w-11/12 box-content  max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
-        <p className="section_heading">Courses to get your started</p>
+        <p className="section_heading">Courses to Get You Started</p>
         <div className="my-4 flex border-b border-b-richblack-600 text-sm">
           <p
             className={`px-4 py-2 ${
@@ -122,7 +122,7 @@ export default function Catalog() {
       {/* Section 2  */}
       <div className="mx-auto box-content w-11/12  max-w-maxContentTab px-4 py-12 lg:max-w-maxContent">
         <p className="section_heading">
-          Top courses in {catalogPageData?.data?.differentCategory?.name}
+          Top Courses in {catalogPageData?.data?.differentCategory?.name}
         </p>
         <div className="py-8">
           

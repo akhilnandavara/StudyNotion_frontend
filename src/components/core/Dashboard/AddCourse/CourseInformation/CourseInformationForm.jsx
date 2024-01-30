@@ -119,8 +119,10 @@ const CourseInformationForm = () => {
           formData.append("thumbnail", data.courseImage);
         }
         setLoading(true);
+        dispatch(showLoading())
         const result = await editCourseDetails(formData, token);
         setLoading(false);
+        dispatch(hideLoading())
         if (result) {
           dispatch(setStep(2));
           dispatch(setCourse(result));
@@ -142,11 +144,13 @@ const CourseInformationForm = () => {
     formData.append("status", COURSE_STATUS.DRAFT);
 
     setLoading(true);
+    dispatch(showLoading())
     const result = await addCourseDetails(formData, token);
     if (result) {
       dispatch(setStep(2));
       dispatch(setCourse(result));
     }
+    dispatch(hideLoading())
     setLoading(false);
   };
 
