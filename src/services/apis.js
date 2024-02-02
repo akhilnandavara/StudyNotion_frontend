@@ -36,6 +36,7 @@ export const profileEndpoints = {
   GET_ADMIN_DATA_API: BASE_URL + "/profile/adminDashboard",
   ADMIN_APPROVAL_API: BASE_URL + "/profile/adminApproval",
   ADMIN_RJECT_API: BASE_URL + "/profile/rejectInstructorApproval",
+  CHAT_BOT_REQUEST: BASE_URL + "/profile/getAiResponse",
 }
 
 // STUDENTS ENDPOINTS

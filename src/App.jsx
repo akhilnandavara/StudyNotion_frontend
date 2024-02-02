@@ -31,6 +31,7 @@ import LoadingBar from 'react-redux-loading-bar'
 import PaymentHistory from "./components/core/Dashboard/PaymentHistory";
 import AddCategory from "./components/core/Dashboard/AdminDashboard/AddCategory";
 import DashboardDetail from "./components/core/Dashboard/AdminDashboard/DashboardDetail";
+import ChatFooter from "./components/common/ChatFooter";
 
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
         <Route  path="about"  element={<About />  }/>
         <Route path="contact" element={<ContactPage />} />
 
+
         {/* Dashboard route */}
         <Route
           element={
@@ -66,6 +68,7 @@ function App() {
         >
           <Route path="dashboard/my-profile" element={<MyProfile />} />
           <Route path="dashboard/settings" element={<ProfileSettings />} />
+          
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
               <Route
@@ -118,6 +121,7 @@ function App() {
 
         <Route path="*" element={<Error />} />
       </Routes>
+      <ChatFooter/>
     </div>
   );
 }

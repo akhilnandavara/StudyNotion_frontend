@@ -6,7 +6,7 @@ function timeout( delay) {
   return new Promise( res => setTimeout(res, delay) );
 }
 
-const { GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API,GET_ADMIN_DATA_API ,ADMIN_APPROVAL_API,ADMIN_RJECT_API} =profileEndpoints;
+const { GET_USER_ENROLLED_COURSES_API, GET_INSTRUCTOR_DATA_API,GET_ADMIN_DATA_API ,ADMIN_APPROVAL_API,ADMIN_RJECT_API,CHAT_BOT_REQUEST} =profileEndpoints;
 
 export const fetchEnrolledCourses = async (token) => {
   
@@ -113,4 +113,21 @@ export const instructorRejectApproval=async(instructorId,token)=>{
   }
   await timeout(1000); 
   toast.dismiss(toastId)
+}  
+
+
+// chatbot
+export const getApiResponse=async(userPrompt,token)=>{
+  try {
+    const response=await apiConnector("POST",CHAT_BOT_REQUEST,{userPrompt},{Authorization:`bearer ${token}`})
+    
+    if(!response?.data.success){
+      throw new Error("Could find data for you")
+    }
+    console.log("CHAT BOT USER REQUEST RESONSE ........",response)
+    return response.data.data
+  }
+   catch (error) {
+    console.log("CHAT BOT  API ERROR............", error)
+  }
 }  
