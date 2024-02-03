@@ -1,20 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
 import { RxDotFilled } from "react-icons/rx";
 import { IoSendSharp } from "react-icons/io5";
 
+
 import React from "react";
 import { getApiResponse } from "../../services/operations/profileApi";
 import { useSelector } from "react-redux";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 export default function ChatFooter() {
   const [openChat, setOpenChat] = useState(false);
   const [userInput, setUserInput] = useState("");
+  
   const [aiResponse, setAiResponse] = useState(null);
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
   const { token } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
+
+  const ref = useRef(null)
+
+  useOnClickOutside(ref, () => setOpenChat(false))
 
   useEffect(() => {
     if (!currentTitle && userInput && aiResponse) {
@@ -43,10 +51,14 @@ export default function ChatFooter() {
     setAiResponse(null);
   };
 
-  const getUserPrompt = async (userPrompt) => {
+  const getUserPrompt = async (userPrompt,e) => {
+    e.preventDefault()
    const response= await getApiResponse(userPrompt,token);
-     console.log("response",response)
+    //  console.log("response",response)
     setAiResponse(response);
+    const userInputField=document.getElementById("userPrompt")
+    userInputField.value=""
+
   };
 
   // Previous chat will contans all the chat this get reset only after  page refresh
@@ -54,18 +66,16 @@ export default function ChatFooter() {
     (previousChat) => previousChat.title === currentTitle
   ); //filter out current chat
 
-  const uniqueTitles = Array.from(
-    new Set(previousChats.map((previousChat) => previousChat.title))
-  ); //returns a array of with titles
-  console.log("uniqueTitles",uniqueTitles)
+  const uniqueTitles = Array.from(new Set(previousChats.map((previousChat) => previousChat.title))); //returns a array of with titles
+  // console.log("uniqueTitles",uniqueTitles)
 
   return (
-    <div className="relative">
+    <div className="relative  z-[2000]">
       {/* chat input interfacae */}
-      <div
+      <div ref={ref}
         className={`${
           openChat ? "block" : "hidden"
-        }  bg-richblack-800 text-richblack-5 fixed w-1/2 md:w-[350px] h-1/2 md:h-[350px]  bottom-20  right-5 md:right-10 rounded-md transition-all duration-200 scroll-smooth py-1 `}
+        }  bg-richblack-800 text-richblack-5 fixed w-2/3 md:w-[350px] h-2/3 md:h-[350px]  bottom-20  right-5 md:right-10 rounded-md transition-all duration-200 scroll-smooth py-1 `}
       >
         <div className="flex relative flex-col h-full w-full">
           {/* display a output */}
@@ -82,32 +92,31 @@ export default function ChatFooter() {
                   key={index}
                   className={`${
                     chat.role === "assistant"
-                      ? "bg-gray-300 bg-opacity-20"
+                      ? "bg-pure-greys-300 bg-opacity-20"
                       : "bg-transparent"
                   } flex gap-6 items-center text-white text-xs p-2`}
                 >
-                  <p className="max-w-[10%]">{chat.role}</p>
-                  <p className="max-w-[90%]">{chat.content}</p>
+                  <p className="max-w-[10%] rounded-full w-6">{chat.role==="user"?(<img src={user.image} alt="User" />):(<img  src="https://res.cloudinary.com/ddkrgyzad/image/upload/v1706951950/studyNotion/profilePicture/ai_bot_brjaw8.png" alt="AI" />)}</p>
+                  <p className="max-w-[90%] text-sm break-all">{chat.content}</p>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* user Input */}
-          <div className="w-full h-[20%]  bottom-0 flex items-center relative  px-2  text-richblack-5">
+            <form onSubmit={(e)=>getUserPrompt(userInput,e)} className="w-full h-[20%]  bottom-0 flex items-center relative  px-2  text-richblack-5">
             <input
-              value={userInput}
+              
               onChange={(e) => setUserInput(e.target.value)}
               rows={1}
+              id="userPrompt"
               placeholder="You can type here"
               className="outline-none resize-none py-2 bg-transparent rounded-md border border-gray-600 text-xs w-full px-1"
             />
             <div className="absolute right-3 text-sm flex gap-2">
               <button
                 className="group text-lg"
-                type="submit"
-                onClick={() => getUserPrompt(userInput)}
-              >
+                type="submit">
                 <IoSendSharp />
                 <div className="bg-white hidden group-hover:inline absolute left-0 mr-4 bottom-10 rounded-md w-14 py-2 px-2 text-center text-richblack-800 text-xs transition-all duration-200 ">
                   Search
@@ -125,7 +134,9 @@ export default function ChatFooter() {
                 </div>
               </button>
             </div>
-          </div>
+            </form>
+
+          
         </div>
       </div>
 
@@ -152,7 +163,7 @@ export default function ChatFooter() {
             ></path>
           </svg>
           {/* dots */}
-          <div className="text-white relative z-1000">
+          <div className="text-white relative">
             <span
               className={`opacity-100 group-hover:opacity-0   absolute  bottom-[5%] left-0 duration-200 transition-all`}
             >
@@ -185,9 +196,11 @@ export default function ChatFooter() {
           <div
             className={`${
               openChat ? "hidden" : "group-hover:inline"
-            } bg-white hidden  absolute -left-20  bottom-0 rounded-md w-16 py-2 px-2   text-center text-richblack-800 text-xs transition-all duration-200`}
+            } bg-white hidden absolute -left-32  bottom-0 rounded-md h-fit w-fit p-4 text-center text-richblack-800  transition-all duration-300`}
           >
-            Ai Assistant Bot
+          <span className="text-xs">Ai Assistant Bot</span>
+          <div className="text-xs">Ask Your doubt...</div>
+            
           </div>
         </button>
       </div>
