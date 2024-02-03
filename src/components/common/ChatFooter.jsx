@@ -9,6 +9,7 @@ import React from "react";
 import { getApiResponse } from "../../services/operations/profileApi";
 import { useSelector } from "react-redux";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import { Link } from "react-router-dom";
 
 export default function ChatFooter() {
   const [openChat, setOpenChat] = useState(false);
@@ -81,10 +82,15 @@ export default function ChatFooter() {
           {/* display a output */}
           <div className="h-[85%]  flex flex-col gap-4  overflow-y-scroll chat-display">
             {!aiResponse && (
-              <div className="flex justify-center items-center text-sm px-2 h-full">
-                Welcome to AI Assistant Bot
+              <div className="flex flex-col justify-center gap-4 items-center text-sm px-2 h-full">
+                <span>Welcome to AI Assistant Bot</span>
+               {!user&&(<div className="text-pink-200 flex flex-col justify-center items-center">
+                Please login to Use this bot
+                <Link to={"/login"} className="text-yellow-50 bg-richblack-900 p-1 rounded hover:bg-richblack-700">Log In</Link>
+               </div>)}   
               </div>
             )}
+           
 
             <ul>
               {currentChat?.map((chat, index) => (
