@@ -4,26 +4,27 @@ import { CiCirclePlus } from "react-icons/ci";
 import { RxDotFilled } from "react-icons/rx";
 import { IoSendSharp } from "react-icons/io5";
 
-
 import React from "react";
 import { getApiResponse } from "../../services/operations/profileApi";
 import { useSelector } from "react-redux";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { Link } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
 
 export default function ChatFooter() {
   const [openChat, setOpenChat] = useState(false);
   const [userInput, setUserInput] = useState("");
-  
+
   const [aiResponse, setAiResponse] = useState(null);
   const [previousChats, setPreviousChats] = useState([]);
   const [currentTitle, setCurrentTitle] = useState(null);
+  const [botTyping, setBotTyping] = useState(false);
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
 
-  const ref = useRef(null)
+  const ref = useRef(null);
 
-  useOnClickOutside(ref, () => setOpenChat(false))
+  useOnClickOutside(ref, () => setOpenChat(false));
 
   useEffect(() => {
     if (!currentTitle && userInput && aiResponse) {
@@ -52,14 +53,15 @@ export default function ChatFooter() {
     setAiResponse(null);
   };
 
-  const getUserPrompt = async (userPrompt,e) => {
-    e.preventDefault()
-   const response= await getApiResponse(userPrompt,token);
+  const getUserPrompt = async (userPrompt, e) => {
+    e.preventDefault();
+    setBotTyping(true);
+    const response = await getApiResponse(userPrompt, token);
     //  console.log("response",response)
     setAiResponse(response);
-    const userInputField=document.getElementById("userPrompt")
-    userInputField.value=""
-
+    setBotTyping(false);
+    const userInputField = document.getElementById("userPrompt");
+    userInputField.value = "";
   };
 
   // Previous chat will contans all the chat this get reset only after  page refresh
@@ -67,13 +69,16 @@ export default function ChatFooter() {
     (previousChat) => previousChat.title === currentTitle
   ); //filter out current chat
 
-  const uniqueTitles = Array.from(new Set(previousChats.map((previousChat) => previousChat.title))); //returns a array of with titles
+  const uniqueTitles = Array.from(
+    new Set(previousChats.map((previousChat) => previousChat.title))
+  ); //returns a array of with titles
   // console.log("uniqueTitles",uniqueTitles)
 
   return (
     <div className="relative  z-[2000]">
       {/* chat input interfacae */}
-      <div ref={ref}
+      <div
+        ref={ref}
         className={`${
           openChat ? "block" : "hidden"
         }  bg-richblack-800 text-richblack-5 fixed w-2/3 md:w-[350px] h-2/3 md:h-[350px]  bottom-20  right-5 md:right-10 rounded-md transition-all duration-200 scroll-smooth py-1 `}
@@ -84,13 +89,20 @@ export default function ChatFooter() {
             {!aiResponse && (
               <div className="flex flex-col justify-center gap-4 items-center text-sm px-2 h-full">
                 <span>Welcome to AI Assistant Bot</span>
-               {!user&&(<div className="text-pink-200 flex flex-col justify-center items-center">
-                Please login to Use this bot
-                <Link to={"/login"} className="text-yellow-50 bg-richblack-900 p-1 rounded hover:bg-richblack-700">Log In</Link>
-               </div>)}   
+
+                {!user && (
+                  <div className="text-pink-200 flex flex-col justify-center items-center">
+                    Please login to Use this bot
+                    <Link
+                      to={"/login"}
+                      className="text-yellow-50 bg-richblack-900 p-1 rounded hover:bg-richblack-700"
+                    >
+                      Log In
+                    </Link>
+                  </div>
+                )}
               </div>
             )}
-           
 
             <ul>
               {currentChat?.map((chat, index) => (
@@ -102,17 +114,46 @@ export default function ChatFooter() {
                       : "bg-transparent"
                   } flex gap-6 items-center text-white text-xs p-2`}
                 >
-                  <p className="max-w-[10%] rounded-full w-6">{chat.role==="user"?(<img src={user.image} alt="User" />):(<img  src="https://res.cloudinary.com/ddkrgyzad/image/upload/v1706951950/studyNotion/profilePicture/ai_bot_brjaw8.png" alt="AI" />)}</p>
-                  <p className="max-w-[90%] text-sm break-all">{chat.content}</p>
+                  <p className="max-w-[10%] rounded-full w-6">
+                    {chat.role === "user" ? (
+                      <img src={user.image} alt="User" />
+                    ) : (
+                      <img
+                        src="https://res.cloudinary.com/ddkrgyzad/image/upload/v1706951950/studyNotion/profilePicture/ai_bot_brjaw8.png"
+                        alt="AI"
+                      />
+                    )}
+                  </p>
+                  {chat.role === "user" ? ( <p className="max-w-[90%] text-sm break-all">
+                    {chat.content}
+                  </p>):(
+                     <p className="max-w-[90%] text-sm break-all">
+                   <TypeAnimation cursor={false} sequence={[chat.content]} repeat={1} omitDeletionAnimation={true} speed={20} />
+                   </p>
+                  )}
+                 
                 </li>
               ))}
             </ul>
           </div>
+          <div className={`${!botTyping ? "hidden" :"inline-block"}  text-xs absolute bottom-16 left-5`}>
+            {" "}
+            Bot is Typing{" "}
+            <TypeAnimation
+              cursor={false}
+              sequence={["", ".", 1000, "..", 1000, "...", 1000]}
+              repeat={Infinity}
+              omitDeletionAnimation={true}
+              speed={50}
+            />
+          </div>
 
           {/* user Input */}
-            <form onSubmit={(e)=>getUserPrompt(userInput,e)} className="w-full h-[20%]  bottom-0 flex items-center relative  px-2  text-richblack-5">
+          <form
+            onSubmit={(e) => getUserPrompt(userInput, e)}
+            className="w-full h-[20%]  bottom-0 flex items-center relative  px-2  text-richblack-5"
+          >
             <input
-              
               onChange={(e) => setUserInput(e.target.value)}
               rows={1}
               id="userPrompt"
@@ -120,9 +161,7 @@ export default function ChatFooter() {
               className="outline-none resize-none py-2 bg-transparent rounded-md border border-gray-600 text-xs w-full px-1"
             />
             <div className="absolute right-3 text-sm flex gap-2">
-              <button
-                className="group text-lg"
-                type="submit">
+              <button className="group text-lg" type="submit">
                 <IoSendSharp />
                 <div className="bg-white hidden group-hover:inline absolute left-0 mr-4 bottom-10 rounded-md w-14 py-2 px-2 text-center text-richblack-800 text-xs transition-all duration-200 ">
                   Search
@@ -140,9 +179,7 @@ export default function ChatFooter() {
                 </div>
               </button>
             </div>
-            </form>
-
-          
+          </form>
         </div>
       </div>
 
@@ -204,9 +241,8 @@ export default function ChatFooter() {
               openChat ? "hidden" : "group-hover:inline"
             } bg-white hidden absolute -left-32  bottom-0 rounded-md h-fit w-fit p-4 text-center text-richblack-800  transition-all duration-300`}
           >
-          <span className="text-xs">Ai Assistant Bot</span>
-          <div className="text-xs">Ask Your doubt...</div>
-            
+            <span className="text-xs">Ai Assistant Bot</span>
+            <div className="text-xs">Ask Your doubt...</div>
           </div>
         </button>
       </div>
