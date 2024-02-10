@@ -116,7 +116,7 @@ export default function ChatFooter() {
                 >
                   <p className="max-w-[10%] rounded-full text-lg">
                     {chat.role === "user" ? (
-                      <img src={user.image} alt="User" className=" w-10" />
+                      <img src={user.image} alt="User" className=" w-10 rounded-full" />
                     ) : (
                       <img
                         src="https://res.cloudinary.com/ddkrgyzad/image/upload/v1706951950/studyNotion/profilePicture/ai_bot_brjaw8.png"
