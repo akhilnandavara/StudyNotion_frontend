@@ -112,19 +112,18 @@ export default function ChatFooter() {
                     chat.role === "assistant"
                       ? "bg-pure-greys-300 bg-opacity-20"
                       : "bg-transparent"
-                  } flex gap-6 items-center text-white text-xs p-2`}
+                  } flex gap-6  text-white text-xs p-4`}
                 >
-                  <p className="max-w-[10%] rounded-full w-6">
+                  <p className="max-w-[10%] rounded-full text-lg">
                     {chat.role === "user" ? (
-                      <img src={user.image} alt="User" />
+                      <img src={user.image} alt="User" className=" w-10" />
                     ) : (
                       <img
                         src="https://res.cloudinary.com/ddkrgyzad/image/upload/v1706951950/studyNotion/profilePicture/ai_bot_brjaw8.png"
-                        alt="AI"
-                      />
+                        alt="AI"/>
                     )}
                   </p>
-                  {chat.role === "user" ? ( <p className="max-w-[90%] text-sm break-all">
+                  {chat.role === "user" ? ( <p className="max-w-[80%] text-sm break-all">
                     {chat.content}
                   </p>):(
                      <p className="max-w-[90%] text-sm break-all">
@@ -138,7 +137,7 @@ export default function ChatFooter() {
           </div>
           <div className={`${!botTyping ? "hidden" :"inline-block"}  text-xs absolute bottom-16 left-5`}>
             {" "}
-            Bot is Typing{" "}
+            Bot is Thinking{" "}
             <TypeAnimation
               cursor={false}
               sequence={["", ".", 1000, "..", 1000, "...", 1000]}
