@@ -194,7 +194,7 @@ export default function ChatFooter() {
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              fill-rule="black"
+              fillRule="black"
               d="M32.0006 0C14.3273 0 0 14.3081 0 31.96C0 49.611 14.3273 63.9201 32.0006 63.9201C34.0607
            63.9201 36.0737 63.7243 38.0247 63.3518L38.0238 63.3528C38.0238 63.3528 44.8979
             61.8706 50.571 62.9143C53.1521 63.3907 57.0951 63.999 60.3472 63.6055C61.9802 63.4077
@@ -209,14 +209,14 @@ export default function ChatFooter() {
             <span
               className={`opacity-100 group-hover:opacity-0   absolute  bottom-[5%] left-0 duration-200 transition-all`}
             >
-              <BsThreeDots size={"2/3"} />
+              <BsThreeDots size={2/3} />
             </span>
             <span
               className={`${
                 openChat ? "group-hover:opacity-100" : "opacity-0"
               } z-1000 opacity-0  duration-200 transition-all absolute translate-y-2 -top-10 `}
             >
-              <RxDotFilled size={"2/3"} />
+              <RxDotFilled size={2/3} />
             </span>
             {/* Smile on hover */}
 

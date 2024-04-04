@@ -391,7 +391,7 @@ export const fetchAllReviews = async () => {
   let result=[]
   try {
     const response = await apiConnector("GET",REVIEWS_DETAILS_API)
-    console.log("FETCH ALL REVIEW  API RESPONSE............", response)
+    // console.log("FETCH ALL REVIEW  API RESPONSE............", response)
 
     if(!response?.data?.success) {
       throw new Error("Could Not fetch Reviews")

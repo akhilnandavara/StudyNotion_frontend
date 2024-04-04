@@ -221,7 +221,7 @@ const Footer = () => {
               );
             })}
           </div>
-          <p>Developed by <span className="text-richblue-300" >Akhil</span>  &copy; 2024 StudyNotion-EdutechLearning </p>
+          <div className="text-center">Developed by <span className="text-richblue-300" >Akhil</span>  &copy; 2024 StudyNotion-EdutechLearning </div>
         </div>
       </div>
     </div>

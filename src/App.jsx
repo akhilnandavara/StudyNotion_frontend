@@ -39,8 +39,6 @@ function App() {
   return (
     <div className="w-screen min-h-screen  bg-richblack-900 flex flex-col font-inter">
       
-
-      
       <div className="h-[2px] bg-richblack-800">
       <LoadingBar className="bg-yellow-200 h-[3px]"/>
       </div>

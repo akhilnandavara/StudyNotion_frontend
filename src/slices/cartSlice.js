@@ -7,7 +7,6 @@ const initialState = {
   totalItems: localStorage.getItem("totalItems") ? JSON.parse(localStorage.getItem("totalItems")) : 0,
 }
 
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -18,7 +17,7 @@ const cartSlice = createSlice({
       const course = action.payload
       const index = state.cart.findIndex((item) => item._id === course._id)
 
-      if(index >= 0){                                                  // If the course is already in the cart, do not modify the quantity
+      if(index >= 0){                                                // If the course is already in the cart, do not modify the quantity
         toast.error("Course already in cart")
         return
       }
@@ -61,7 +60,6 @@ const cartSlice = createSlice({
     },
   },
 })
-
 
 export const { addToCart, removeFromCart, resetCart } = cartSlice.actions
 export default cartSlice.reducer
